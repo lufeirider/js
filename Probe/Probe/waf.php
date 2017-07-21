@@ -2,60 +2,60 @@
 function waf($url)
 {
 	/*
-	°²È«¹·
+	å®‰å…¨ç‹—
 	http://172.16.10.210/
 	http://172.16.10.210/?id=1%20union%20select%201,2,3,4
 
-	ÔÆËø
+	äº‘é”
 	http://www.npxpf.com/
 	http://www.aemedia.org/
 	http://www.aemedia.org/?id=1%20union%20select%201,2,3,4
 
-	ÌÚÑ¶ÔÆ
+	è…¾è®¯äº‘
 	http://www.zhuojianchina.com/
 	http://www.zhuojianchina.com/?id=1%20union%20select%201,2,3,4
 
-	°Ù¶ÈÔÆ
+	ç™¾åº¦äº‘
 	https://su.baidu.com/
 	https://su.baidu.com/?id=1%20union%20select%201,2,3,4
 
-	°¢ÀïÔÆ
+	é˜¿é‡Œäº‘
 	https://yq.aliyun.com/
 	https://www.itjuzi.com/
 	https://yq.aliyun.com/?id=1%20union%20select%201,2,3,4
 
-	¼ÓËÙÀÖ
+	åŠ é€Ÿä¹
 	https://www.yunaq.com/
 	https://www.yunaq.com/?id=1%20union%20select%201,2,3,4
 
-	360Ö÷»úÎÀÊ¿
+	360ä¸»æœºå«å£«
 	http://zhuji.360.cn/
 	http://zhuji.360.cn/?id=1%20union%20select%201,2,3,4
 	*/
 
-	//ÌÚÑ¶ÔÆ
-	//405 Not Allowed ÄúµÄ·ÃÎÊ¿ÉÄÜ»á¶ÔÍøÕ¾Ôì³ÉÎ£ÏÕ£¬ÒÑ±»ÌÚÑ¶ÔÆ°²È«À¹½Ø¡£
+	//è…¾è®¯äº‘
+	//405 Not Allowed æ‚¨çš„è®¿é—®å¯èƒ½ä¼šå¯¹ç½‘ç«™é€ æˆå±é™©ï¼Œå·²è¢«è…¾è®¯äº‘å®‰å…¨æ‹¦æˆªã€‚
 
-	//°²È«¹·
-	//ÍøÕ¾·À»ğÇ½ ÄúÌá½»µÄÄÚÈİ°üº¬Î£ÏÕµÄ¹¥»÷ÇëÇó
+	//å®‰å…¨ç‹—
+	//ç½‘ç«™é˜²ç«å¢™ æ‚¨æäº¤çš„å†…å®¹åŒ…å«å±é™©çš„æ”»å‡»è¯·æ±‚
 
-	//ÔÆËø
-	//ÍøÕ¾·À»ğÇ½ Ìá½»µÄÇëÇóº¬ÓĞ²»ºÏ·¨µÄ²ÎÊı,ÒÑ±»ÍøÕ¾¹ÜÀíÔ±ÉèÖÃÀ¹½Ø
+	//äº‘é”
+	//ç½‘ç«™é˜²ç«å¢™ æäº¤çš„è¯·æ±‚å«æœ‰ä¸åˆæ³•çš„å‚æ•°,å·²è¢«ç½‘ç«™ç®¡ç†å‘˜è®¾ç½®æ‹¦æˆª
 
-	//°Ù¶ÈÔÆ
-	//ÓÑÇéÌáÊ¾ | °Ù¶ÈÔÆ¼ÓËÙ
+	//ç™¾åº¦äº‘
+	//å‹æƒ…æç¤º | ç™¾åº¦äº‘åŠ é€Ÿ
 
 	//==========================================================================================
 
-	//±äÁ¿³õÊ¼»¯
+	//å˜é‡åˆå§‹åŒ–
 	$wafContent = array(
-		safedog => "http://404.safedog.cn/images/safedogsite/broswer_logo.jpg", //°²È«¹·
-		yunsuo => ".yunsuologo{margin:0 auto; display:block; margin-top:20px;}",	//ÔÆËø
-		tencent => "http://waf.tencent-cloud.com:8080/css/main.css", //ÌÚÑ¶ÔÆ
-		aliyun => "https://errors.aliyun.com/images/TB1TpamHpXXXXaJXXXXeB7nYVXX-104-162.png",	//°¢ÀïÔÆ
-		baidu => "/cdn-cgi/styles/baidu.errors.css",	//°Ù¶ÈÔÆ
+		safedog => "http://404.safedog.cn/images/safedogsite/broswer_logo.jpg", //å®‰å…¨ç‹—
+		yunsuo => ".yunsuologo{margin:0 auto; display:block; margin-top:20px;}",	//äº‘é”
+		tencent => "http://waf.tencent-cloud.com:8080/css/main.css", //è…¾è®¯äº‘
+		aliyun => "https://errors.aliyun.com/images/TB1TpamHpXXXXaJXXXXeB7nYVXX-104-162.png",	//é˜¿é‡Œäº‘
+		baidu => "/cdn-cgi/styles/baidu.errors.css",	//ç™¾åº¦äº‘
 		zhuji => "http://zhuji.360.cn/guard/firewall/stopattack.html",		//360
-		yunaq => "https://www.yunaq.com/misinformation_upload/?from="		//¼ÓËÙÀÖ
+		yunaq => "https://www.yunaq.com/misinformation_upload/?from="		//åŠ é€Ÿä¹
 	);
 
 	//	$payload = "?id=1%20union%20select%201,2,3,4";
@@ -63,7 +63,7 @@ function waf($url)
 	//	$pyaload = "/test.asp;.jpg?id=1%20and%201=1";
 	//	$payload = "/test.asp;?id=1union%20select.jpg";
 	//	$payload = "/test.asp;?id=1 and user() /*.jpg";
-	//	$payload = "/test.asp%3b%3fid%3d1+and+user()+%2f*.jpg";
+	//	$payload = "/*%2f1.jpg";
 
 
 	$payload = "/?id=1%20union%20select%201,2,3,4";
